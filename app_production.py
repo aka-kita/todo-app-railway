@@ -160,7 +160,7 @@ class TodoManager:
                 body=request_body
             ).execute()
             return True
-.* except Exception as e:
+        except Exception as e:
             print(f"Error deleting todo: {e}")
             return False
 
@@ -197,6 +197,11 @@ def oauth2callback():
         if os.path.exists(credentials_file):
             os.remove(credentials_file)
     
+    return redirect(url_for('index'))
+
+@app.route('/add', methods=['GET', 'POST'])
+def add_todo():
+    """新しいTodoを追加"""
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
