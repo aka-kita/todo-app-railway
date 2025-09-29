@@ -246,6 +246,7 @@ def delete_todo(todo_id):
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    # 本番環境ではdebug=Falseに設定
+    # Railway用の設定
+    port = int(os.environ.get('PORT', 8080))
     debug_mode = os.environ.get('FLASK_DEBUG', 'False').lower() == 'true'
-    app.run(debug=debug_mode, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+    app.run(debug=debug_mode, host='0.0.0.0', port=port)
